@@ -1,7 +1,7 @@
 <?
 /*
 
-phPo Translator - Version 0.1
+phPo Translator - Version 0.1.1
 Copyright 2008 by Andrew Ferguson (andrew@fergcorp.com)
 
 This program is free software: you can redistribute it and/or modify
@@ -32,13 +32,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <body>
 <?php
 
-$poFileName = str_replace("/", "", stripslashes($_REQUEST['poFileName'])); //"afdn_countdownTimer.po";
+$emailTo = "you@example.com"; // the address where the errors reports and translations should be sent to
+
+$poFileName = str_replace("/", "", stripslashes($_REQUEST['poFileName']));
 if(!preg_match("/(.*?).po/", $poFileName)){
-	mail("andrew@fergcorp.com", "phPo hackalert", $_REQUEST['poFileName']);
+	mail($emailTo, "phPo hackalert", $_REQUEST['poFileName']);
 	die();
 }
-//echo  $poFileName;
-$emailTo = "andrew@fergcorp.com";
 
 $poFileArray = @file($poFileName) or die("No such file!");
 
