@@ -1,7 +1,7 @@
 <?
 /*
 
-phPo Translator - Version 0.1.1
+phPo Translator - Version 0.2
 Copyright 2008 by Andrew Ferguson (andrew@fergcorp.com)
 
 This program is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ if(isset($_POST['Submit'])){
 
 foreach($poFileArray as $key=>$value){
 	if(isset($_POST[$key]))
-		$translatedPo[$key]="msgstr \"".$_POST[$key]."\"";
+		$translatedPo[$key]="msgstr \"".stripslashes(htmlspecialchars(urldecode($_POST[$key])))."\"";
 	else
 		$translatedPo[$key]=$poFileArray[$key];
 
@@ -71,7 +71,7 @@ echo "<p>Thanks for translating!</p>";
 }
 else{
 
-	echo '<form action="" method="post">';
+	echo '<form action="" method="post" enctype="application/x-www-form-urlencoded">';
 
 	echo "<p>What is your name (for credit):<br />";
 	echo '<input name="name" type="text" /></p>';
